@@ -122,8 +122,8 @@ pipe = WanImageToVideoPipeline.from_pretrained(
 # LOAD LORA ADAPTERS
 # =========================================================
 pipe.load_lora_weights(
-    "obsxrver/wan2.2-i2v-scat",
-    weight_name="WAN2.2-I2V-HighNoise_scat-xxi-i2v.safetensors",
+    "lopi999/Wan2.2-I2V_General-NSFW-LoRA",
+    weight_name="NSFW-22-H-e8.safetensors",
     adapter_name="i2v_scat"
 )
 pipe.load_lora_weights(
@@ -131,10 +131,14 @@ pipe.load_lora_weights(
     weight_name="Wan2.2-I2V-A14B-4steps-lora-rank64-Seko-V1/high_noise_model.safetensors",
     adapter_name="lightx2v"
 )
-
 pipe.load_lora_weights(
-    "obsxrver/wan2.2-i2v-scat",
-    weight_name="WAN2.2-I2V-LowNoise_scat-xxi-i2v.safetensors",
+    "marubok/wan",
+    weight_name="w22_i2v_Deepthroat-Blowjob_H.safetensors",
+    adapter_name="BJH"
+)
+pipe.load_lora_weights(
+    "lopi999/Wan2.2-I2V_General-NSFW-LoRA",
+    weight_name="NSFW-22-L-e8.safetensors",
     adapter_name="i2v_scat_2",
     load_into_transformer_2=True
 )
@@ -144,11 +148,16 @@ pipe.load_lora_weights(
     adapter_name="lightx2v_2",
     load_into_transformer_2=True
 )
+pipe.load_lora_weights(
+    "marubok/wan",
+    weight_name="w22_i2v_Deepthroat-Blowjob_L.safetensors",
+    adapter_name="BJ2",
+    load_into_transformer_2=True
+)
 
-
-pipe.set_adapters([ "i2v_scat","lightx2v","i2v_scat_2","lightx2v_2"], adapter_weights=[0.95, 0.9, 0.95, 0.9])
-pipe.fuse_lora(adapter_names=["i2v_scat","lightx2v"], lora_scale=1., components=["transformer"])
-pipe.fuse_lora(adapter_names=["i2v_scat_2","lightx2v_2"], lora_scale=1., components=["transformer_2"])
+pipe.set_adapters( ["i2v_scat", "lightx2v", "BJH", "i2v_scat_2", "lightx2v_2", "BJ2"], adapter_weights=[0.95, 0.9, 0.95, 0.9, 0.9, 0.9])
+pipe.fuse_lora(adapter_names=["i2v_scat","lightx2v","BJH"], lora_scale=1., components=["transformer"])
+pipe.fuse_lora(adapter_names=["i2v_scat_2","lightx2v_2","BJ2"], lora_scale=1., components=["transformer_2"])
 pipe.unload_lora_weights()
 
 # =========================================================
@@ -208,7 +217,7 @@ else:
 # =========================================================
 # DEFAULT PROMPTS
 # =========================================================
-default_prompt_i2v = "the video cuts, in the next scene, she takes off her clothes and is nude and covered in feces, on her back with her with legs spread, looking at the camera, she defecates and rubs her pussy, no camera movement"
+default_prompt_i2v = "the video cuts, in the next scene, she takes off her clothes and blowjob, deepthroat; a video on a woman with fair skin performing a deepthroat blowjob. She kneeling in front of a man. The man is moving his erect penis back and forth in the woman mouth and throat, while she is sucking the man's penis, the penis is going deep into her mouth and throat. Her throat is prominently bulging as the man's penis penetrates her mouth and throat. She makes the penis wet with translucent saliva."
 default_negative_prompt = (
     "色调艳丽, 过曝, 静态, 细节模糊不清, 字幕, 风格, 作品, 画作, 画面, 静止, 整体发灰, "
     "最差质量, 低质量, JPEG压缩残留, 丑陋的, 残缺的, 多余的手指, 画得不好的手部, 画得不好的脸部, "
