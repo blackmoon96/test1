@@ -132,8 +132,8 @@ pipe.load_lora_weights(
     adapter_name="lightx2v"
 )
 pipe.load_lora_weights(
-    "marubok/wan",
-    weight_name="w22_i2v_Deepthroat-Blowjob_H.safetensors",
+    "profpeng/wansex",
+    weight_name="wan2.2-i2v-high-sex-smashcut-v1.0.safetensors",
     adapter_name="BJH"
 )
 pipe.load_lora_weights(
@@ -149,8 +149,8 @@ pipe.load_lora_weights(
     load_into_transformer_2=True
 )
 pipe.load_lora_weights(
-    "marubok/wan",
-    weight_name="w22_i2v_Deepthroat-Blowjob_L.safetensors",
+    "profpeng/wansex",
+    weight_name="wan2.2-i2v-low-sex-smashcut-v1.0.safetensors",
     adapter_name="BJ2",
     load_into_transformer_2=True
 )
